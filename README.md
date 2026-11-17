@@ -34,4 +34,4 @@ Asset sources:
 
 ## DVD discs
 
-Disc numbers are seeded by spreading each season's episodes evenly across 5 discs. If your box set differs, change an episode's disc from the dropdown in the UI, or edit `DISCS_PER_SEASON` in `scripts/generate-seed.mjs` and run `npm run seed:generate` before the first deploy.
+Disc numbers follow the box set's episodes-per-disc counts in `scripts/disc-layout.mjs`, which generates `migrations/0003_disc_layout.sql`. Individual episodes can also be moved from the disc dropdown in the UI.
