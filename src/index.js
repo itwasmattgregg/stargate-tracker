@@ -1,10 +1,19 @@
 const json = (data, status = 200) =>
   new Response(JSON.stringify(data), { status, headers: { "content-type": "application/json" } });
 
+const PUBLIC_PATHS = new Set(["/og.png", "/favicon.svg", "/apple-touch-icon.png"]);
+
+// Link-preview fetchers (iMessage identifies as facebookexternalhit/Twitterbot) can't log in.
+// They get the static page shell for its meta tags; episode data stays behind /api.
+const PREVIEW_BOT = /facebookexternalhit|Facebot|Twitterbot|Slackbot|Discordbot|WhatsApp|TelegramBot|LinkedInBot|Applebot|SkypeUriPreview|redditbot/i;
+
 // Optional protection: set APP_PASSWORD with `wrangler secret put APP_PASSWORD`
 // and the browser will prompt for it (any username).
 function unauthorized(request, env) {
   if (!env.APP_PASSWORD) return null;
+  const { pathname } = new URL(request.url);
+  if (PUBLIC_PATHS.has(pathname)) return null;
+  if ((pathname === "/" || pathname === "/index.html") && PREVIEW_BOT.test(request.headers.get("user-agent") || "")) return null;
   const header = request.headers.get("authorization") || "";
   if (header.startsWith("Basic ")) {
     const [, pass] = atob(header.slice(6)).split(":");

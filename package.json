@@ -7,10 +7,12 @@
     "dev": "wrangler d1 migrations apply stargate-tracker --local && wrangler dev",
     "seed:generate": "node scripts/generate-seed.mjs",
     "glyphs:build": "node scripts/build-glyphs.mjs",
+    "og:render": "node scripts/render-og.mjs",
     "db:migrate": "wrangler d1 migrations apply stargate-tracker --remote",
     "deploy": "wrangler d1 migrations apply stargate-tracker --remote && wrangler deploy"
   },
   "devDependencies": {
+    "playwright-core": "^1.65.1",
     "wrangler": "^4.164.0"
   }
 }

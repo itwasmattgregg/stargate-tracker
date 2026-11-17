@@ -1,0 +1,66 @@
+<!doctype html>
+<!-- Template for public/og.png. Render with: node scripts/render-og.mjs -->
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link href="https://fonts.googleapis.com/css2?family=Michroma&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/public/styles.css" />
+    <style>
+      html, body { margin: 0; width: 1200px; height: 630px; overflow: hidden; }
+      body { display: flex; align-items: center; gap: 56px; padding: 0 70px; }
+      .scanlines { position: absolute; }
+      #gate { width: 470px; height: 470px; flex-shrink: 0; }
+      .copy { display: flex; flex-direction: column; gap: 22px; }
+      .eyebrow { font-size: 18px; letter-spacing: 0.32em; margin: 0; }
+      h1 { font-size: 56px; white-space: nowrap; line-height: 1.1; margin: 0; }
+      .tag { font-size: 26px; color: var(--cyan-hi); margin: 0; letter-spacing: 0.04em; }
+      .address li { width: 64px; height: 64px; }
+      .address .glyph { width: 46px; height: 46px; }
+      .address-n { font-size: 12px; }
+      .stamp {
+        align-self: flex-start;
+        font-family: var(--display);
+        font-size: 17px;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        padding: 10px 18px;
+        color: var(--bg);
+        background: var(--horizon);
+        box-shadow: 0 0 26px var(--horizon);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="stars"></div>
+    <div class="scanlines"></div>
+    <div id="gate"></div>
+    <div class="copy">
+      <p class="eyebrow">Stargate Command</p>
+      <h1>SG-1<br />Mission&nbsp;Log</h1>
+      <p class="tag">213 missions · 10 seasons</p>
+      <ol class="address" id="address"></ol>
+      <span class="stamp">Wormhole established</span>
+    </div>
+    <script type="module">
+      import { createGate, glyphId } from "/public/gate.js";
+      const holder = document.createElement("div");
+      holder.hidden = true;
+      holder.innerHTML = await (await fetch("/public/glyphs.svg")).text();
+      document.body.prepend(holder);
+
+      const gate = createGate(document.getElementById("gate"));
+      gate.setProgress(1, 1);
+      document.getElementById("gate-readout").textContent = "";
+
+      const address = document.getElementById("address");
+      [27, 7, 15, 32, 12, 30, 1].forEach((g, i) => {
+        const li = document.createElement("li");
+        li.className = "locked";
+        li.innerHTML = `<span class="address-n">${i + 1}</span><svg class="glyph" viewBox="0 0 48 48"><use href="#${glyphId(g)}"/></svg>`;
+        address.append(li);
+      });
+      await document.fonts.ready;
+      document.body.dataset.ready = "1";
+    </script>
+  </body>
+</html>
