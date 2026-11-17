@@ -12,8 +12,7 @@
     {
       "binding": "DB",
       "database_name": "stargate-tracker",
-      // Replace with the id printed by `npx wrangler d1 create stargate-tracker`
-      "database_id": "00000000-0000-0000-0000-000000000000",
+      "database_id": "c2073c19-ba11-4ac5-b8b3-ad9f5fb5113e",
       "migrations_dir": "migrations"
     }
   ]
