@@ -3,36 +3,71 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>SG-1 Watch Log</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='42' fill='none' stroke='%2338bdf8' stroke-width='10'/></svg>" />
+    <title>SGC Mission Log · Stargate SG-1</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Michroma&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="/styles.css" />
   </head>
   <body>
-    <header class="top">
-      <div class="top-inner">
-        <div class="brand">
-          <span class="gate" aria-hidden="true"></span>
+    <div class="stars" aria-hidden="true"></div>
+    <div class="scanlines" aria-hidden="true"></div>
+
+    <header class="command">
+      <div class="gate-wrap" id="gate"></div>
+
+      <section class="panel console">
+        <div class="console-top">
           <div>
-            <h1>Stargate SG-1</h1>
-            <p class="sub">Watch log</p>
+            <p class="eyebrow">Stargate Command · Cheyenne Mountain</p>
+            <h1>SG-1 Mission Log</h1>
           </div>
+          <div class="status" id="status">Idle</div>
         </div>
-        <div class="overall">
-          <div class="overall-text"><strong id="overall-count">0 / 0</strong> episodes watched</div>
-          <div class="bar"><div class="bar-fill" id="overall-bar"></div></div>
+
+        <dl class="readouts">
+          <div>
+            <dt>Missions completed</dt>
+            <dd><span id="overall-count">000 / 000</span></dd>
+          </div>
+          <div>
+            <dt>Chevrons locked</dt>
+            <dd><span id="chevron-count">0 / 9</span></dd>
+          </div>
+          <div>
+            <dt>Seasons secured</dt>
+            <dd><span id="season-count">0 / 10</span></dd>
+          </div>
+        </dl>
+
+        <div class="meter" aria-hidden="true"><div class="meter-fill" id="overall-bar"></div></div>
+
+        <div class="controls">
+          <button type="button" class="sgc-btn" id="iris-toggle" aria-pressed="false">
+            <span class="led"></span><span class="label">Iris open</span>
+          </button>
+          <button type="button" class="sgc-btn" id="sound-toggle" aria-pressed="true">
+            <span class="led"></span><span class="label">Audio on</span>
+          </button>
+          <span class="operator">Operator: Sgt. W. Harriman</span>
         </div>
-        <label class="toggle">
-          <input type="checkbox" id="hide-watched" />
-          <span>Hide watched</span>
-        </label>
-      </div>
+      </section>
     </header>
 
     <main id="seasons">
       <p class="loading">Dialing the gate…</p>
     </main>
 
-    <footer>Episode data and images from <a href="https://www.tvmaze.com" target="_blank" rel="noopener">TVMaze</a>.</footer>
+    <div class="toasts" id="toasts" aria-live="polite"></div>
+    <div class="kawoosh" id="kawoosh" aria-hidden="true"></div>
+
+    <footer>
+      Episode data and images from <a href="https://www.tvmaze.com" target="_blank" rel="noopener">TVMaze</a>.
+      Gate glyphs are public-domain drawings by Bryan Derksen via
+      <a href="https://commons.wikimedia.org/wiki/Category:SVG_Stargate_Milky_Way_glyphs" target="_blank" rel="noopener">Wikimedia Commons</a>.
+      Fan project, not affiliated with MGM.
+    </footer>
 
     <script src="/app.js" type="module"></script>
   </body>
