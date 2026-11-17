@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SG-1 Watch Log</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='42' fill='none' stroke='%2338bdf8' stroke-width='10'/></svg>" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="top">
+      <div class="top-inner">
+        <div class="brand">
+          <span class="gate" aria-hidden="true"></span>
+          <div>
+            <h1>Stargate SG-1</h1>
+            <p class="sub">Watch log</p>
+          </div>
+        </div>
+        <div class="overall">
+          <div class="overall-text"><strong id="overall-count">0 / 0</strong> episodes watched</div>
+          <div class="bar"><div class="bar-fill" id="overall-bar"></div></div>
+        </div>
+        <label class="toggle">
+          <input type="checkbox" id="hide-watched" />
+          <span>Hide watched</span>
+        </label>
+      </div>
+    </header>
+
+    <main id="seasons">
+      <p class="loading">Dialing the gate…</p>
+    </main>
+
+    <footer>Episode data and images from <a href="https://www.tvmaze.com" target="_blank" rel="noopener">TVMaze</a>.</footer>
+
+    <script src="/app.js" type="module"></script>
+  </body>
+</html>

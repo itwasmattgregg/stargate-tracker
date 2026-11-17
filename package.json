@@ -1,0 +1,15 @@
+{
+  "name": "stargate-tracker",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler d1 migrations apply stargate-tracker --local && wrangler dev",
+    "seed:generate": "node scripts/generate-seed.mjs",
+    "db:migrate": "wrangler d1 migrations apply stargate-tracker --remote",
+    "deploy": "wrangler d1 migrations apply stargate-tracker --remote && wrangler deploy"
+  },
+  "devDependencies": {
+    "wrangler": "^4.164.0"
+  }
+}
